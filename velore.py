@@ -11,7 +11,7 @@ class Velore:
         self.iterations = iterations
         self.activation = activation_functions[activation]
 
-    def __loss(y, a):
+    def __loss(self, y, a):
         return y*np.log(a) + (1-y)*np.log(1-a)
 
     def __forward_prop(self, X, Y):
