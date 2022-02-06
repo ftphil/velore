@@ -11,11 +11,14 @@ class Velore:
         self.iterations = iterations
         self.activation = activation_functions[activation]
 
+    def __loss(y, a):
+        return y*np.log(a) + (1-y)*np.log(1-a)
+
     def __forward_prop(self, X, Y):
         m = X.shape[1]
 
         A = self.activation(np.dot(self.weights.T,X) + self.bias)
-        cost = (-1/m)*np.sum(Y*np.log(A) + (1-Y)*np.log(1-A))
+        cost = (-1/m)*np.sum(self.__loss(Y, A))
 
         dweight = (1/m)*np.dot(X,(A - Y).T)
         dbias = (1/m)*np.sum(A - Y)
